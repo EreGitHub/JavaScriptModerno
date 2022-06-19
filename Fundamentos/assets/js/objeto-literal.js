@@ -14,19 +14,23 @@ let personaje = {
     },
     'ultima-pelicula': 'Infinity War',//NOTE Propiedad con espacios
 };
-console.log('nombre', personaje.nombre);
-console.log(personaje)
-console.log(personaje.nombre) //repuesta Tony Stark
-console.log(personaje['nombre']) //repuesta Tony Stark
-console.log(personaje.edad) //repuesta 40
-console.log(personaje.coords.lat) //repuesta 34.034
-console.log('Nº de trajes', personaje.trajes.length)//repuesta 3
-console.log('Ultimo trajes', personaje.trajes[personaje.trajes.length - 1])//repuesta Hulkbuster
 
-//NOTE trabajar de manera dinamica con objetos
-const x = 'vivo';
-console.log('vivo', personaje[x]) //repuesta true
-console.log('ultima pelicula', personaje['ultima-pelicula']) //repuesta Infinity War
-
-
-
+//NOTE elimina la propiedad edad
+delete personaje.edad;
+console.log(personaje);
+//NOTE convierte un obj en un array
+const entriesPares = Object.entries(personaje);
+console.log(entriesPares);
+//NOTE crear una nueva propiedad en el obj
+personaje.casado = true;
+//NOTE bloquear las propiedades del obj
+Object.freeze(personaje);
+personaje.dinero = 105400;
+personaje.casado = false;
+personaje.direccion.ubicacion = 'Costa Rica';//NOTE si me permite cabiar el valor
+//NOTE obtenemos un arreglo de las propiedades del obj
+const propiedades = Object.getOwnPropertyNames(personaje);
+console.log(propiedades);
+//NOTE obtenemos los valores de las propiedades del obj
+const valores = Object.values(personaje);
+console.log(valores);
