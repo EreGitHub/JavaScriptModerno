@@ -1,15 +1,18 @@
+//NOTE con valores primitivos
 let a = 10;
 let b = a;
 a = 30;
 console.log({ a, b });
 
+//NOTE con objetos
 //NOTE pasando valores por referencia
 let juan = { nombre: 'Juan' };
-//let ana = juan;
+// let ana = juan;
+// console.log({ juan, ana });//juan y ana tienen el mismo valor
 //NOTE operador spread
 let ana = { ...juan };//NOTE cambiando el valor de la referencia
 ana.nombre = 'Ana';
-console.log({ juan, ana });//juan y ana tienen el mismo valor
+console.log({ juan, ana });
 
 //const cambiaNombre = (persona) => {
 const cambiaNombre = ({ ...persona }) => {
