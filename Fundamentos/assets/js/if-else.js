@@ -1,23 +1,33 @@
-let a = 5;
-if (a >= 10)
-    console.log('a es mayor o igual a 10');
-else
-    console.log('a es menor a 10');
-console.log('fin de programa');
+let dia = 3;
+const diasLetra = {
+    0: 'Domingo',
+    1: 'Lunes',
+    2: 'Martes',
+    3: 'Miercoles',
+    4: 'Jueves',
+    5: 'Viernes',
+    6: 'Sabado'
+};
+console.log(diasLetra[dia] || 'Día no encontrado');
 
-const hoy = new Date();
-let dia = hoy.getDay();
-console.log({ dia });
-//solo evalua el valor 
-if (dia == 0)
-    console.log('Es domingo');
-else
-    console.log('No es domingo');
-//evalua que el valor y el tipo de dato sean iguales
-if (dia === 0)
-    console.log('Es domingo');
-else if (dia === 1)
-    console.log('Es lunes');
-else if (dia === 2)
-    console.log('Es martes');
-console.log('No es lunes, marte o domingo...');
+const diasLetra2 = {
+    0: () => 'Domingo - 0',
+    1: () => 'Lunes - 1',
+    2: () => 'Martes - 2',
+    3: () => 'Miercoles - 3',
+    4: () => 'Jueves - 4',
+    5: () => 'Viernes - 5',
+    6: () => 'Sabado - 6'
+};
+console.log(diasLetra2[dia]() || 'Día no encontrado');
+
+const diasLetra3 = [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miercoles',
+    'Jueves',
+    'Viernes',
+    'Sabado'
+];
+console.log(diasLetra3[dia] || 'Día no encontrado');
