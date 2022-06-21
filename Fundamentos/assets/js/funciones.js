@@ -1,21 +1,23 @@
-//NOTE funcion convencional
-function saludar(nombre) { //si no le paso valor es igual undefined
-    //NOTE esto solo funciona en funciones tradiciones (arguments)
-    console.log(arguments);
-    console.log('Hola mundo ' + nombre);
+function saludar(nombre) {
+    return 1;//[1,2]
+    //esto nunca se ejecuta
+    console.log('soy un codigo despues de return');
 }
+const retorno = saludar('pepe', 40, true, 'Bolivia');
+console.log({ retorno });
 
-//NOTE funcion anonima
-const saludar2 = function (nombre) {
-    console.log('Hola mundo ' + nombre);
+function sumar(a, b) {
+    return a + b;
 }
+console.log(sumar(1, 2));
 
-//NOTE funcion flecha
-//const saludarFlecha = (nombre) => {
-const saludarFlecha = nombre => {
-    console.log('Hola mundo ' + nombre);
+const sumar2 = (a, b) => a + b;
+console.log(sumar2(1, 2));
+
+function getAleatorio() {
+    return Math.random();
 }
+console.log(getAleatorio());
 
-saludar('pepe', 40, true, 'Bolivia');
-saludar2('pepe');
-saludarFlecha('pepe');
+const getAleatorio2 = () => Math.random();
+console.log(getAleatorio2());
