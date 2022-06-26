@@ -6,8 +6,12 @@ let puntosCpu = 0;
 
 //NOTE referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
-const puntosHTML = document.querySelectorAll('small');
+const btnDetener = document.querySelector('#btnDetener');
+
 const divCartasJugador = document.querySelector('#jugador-carta');
+const divCartasCpu = document.querySelector('#computadora-carta');
+
+const puntosHTML = document.querySelectorAll('small');
 
 //NOTE esta funcion crea un nuevo deck (barajas)
 const crearDeck = () => {
@@ -41,6 +45,23 @@ const valorCarta = (carta) => {
         (valor === 'A') ? 11 : 10
         : valor * 1;
 }
+
+//NOTE turno de la cpu
+const turnoCpu = (puntosMinimos) => {
+    do {
+        const carta = pedirCarta();
+        puntosCpu += valorCarta(carta);
+        puntosHTML[1].innerText = puntosCpu;
+        const imgCarta = document.createElement('img');
+        imgCarta.src = `assets/cartas/${carta}.png`;
+        imgCarta.classList.add('carta');
+        divCartasCpu.append(imgCarta);
+        //divCartasJugador.appendChild(cartaHTML);
+        if (puntosMinimos > 21)
+            break;
+    } while ((puntosCpu < puntosMinimos) && (puntosMinimos <= 21));
+}
+
 //NOTE eventos
 //el primer parametro es el nombre del evento y el segundo es la funcion callback
 btnPedir.addEventListener('click', () => {
@@ -54,9 +75,19 @@ btnPedir.addEventListener('click', () => {
 
     if (puntosJugador > 21) {
         btnPedir.disabled = true;
+        btnDetener.disabled = true;
+        turnoCpu(puntosJugador);
         console.log('perdites')
     } else if (puntosJugador === 21) {
         btnPedir.disabled = true;
+        btnDetener.disabled = true;
+        turnoCpu(puntosJugador);
         console.log('ganaste')
     }
+});
+
+btnDetener.addEventListener('click', () => {
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
+    turnoCpu(puntosJugador);
 });
