@@ -7,6 +7,7 @@ let puntosCpu = 0;
 //NOTE referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
 const btnDetener = document.querySelector('#btnDetener');
+const btnNuevo = document.querySelector('#btnNuevo');
 
 const divCartasJugador = document.querySelector('#jugador-carta');
 const divCartasCpu = document.querySelector('#computadora-carta');
@@ -27,6 +28,7 @@ const crearDeck = () => {
         }
     }
     deck = _.shuffle(deck);
+    console.log(deck);
     return deck;
 }
 crearDeck();
@@ -60,6 +62,17 @@ const turnoCpu = (puntosMinimos) => {
         if (puntosMinimos > 21)
             break;
     } while ((puntosCpu < puntosMinimos) && (puntosMinimos <= 21));
+    setTimeout(() => {
+        if (puntosCpu === puntosMinimos) {
+            alert('empate :(');
+        } else if (puntosMinimos > 21) {
+            alert('cpu gana :D');
+        } else if (puntosCpu > 21) {
+            alert('jugador gana')
+        } else {
+            alert('cpu gana :D');
+        }
+    }, 10);
 }
 
 //NOTE eventos
@@ -90,4 +103,20 @@ btnDetener.addEventListener('click', () => {
     btnPedir.disabled = true;
     btnDetener.disabled = true;
     turnoCpu(puntosJugador);
+});
+
+// btnNuevo.addEventListener('click', () => {
+//     location.reload();//recarga la pagina
+// }, false);
+btnNuevo.addEventListener('click', () => {
+    deck = [];
+    deck = crearDeck();
+    puntosJugador = 0;
+    puntosCpu = 0;
+    puntosHTML[0].innerText = puntosJugador;
+    puntosHTML[1].innerText = puntosCpu;
+    divCartasJugador.innerHTML = '';
+    divCartasCpu.innerHTML = '';
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
 });
