@@ -1,4 +1,4 @@
-(() => {
+const miModulo = (() => {
     'use strict';//estricto a la hora de evaluar el codigo
 
     let deck = [];
@@ -20,10 +20,15 @@
     //NOTE inicializa el juego
     const inicializarJuego = (numeroJugadore = 2) => {
         deck = crearDeck();
+        puntosJugadores = [];
         for (let i = 0; i < numeroJugadore; i++) {
             puntosJugadores.push(0);
         }
-        console.log(puntosJugadores);
+        puntosHTML.forEach(puntos => puntos.innerText = 0);
+        divCartasJugadores.forEach(div => div.innerHTML = '');
+
+        btnPedir.disabled = false;
+        btnDetener.disabled = false;
     }
 
     //NOTE esta funcion crea un nuevo deck (barajas)
@@ -71,17 +76,8 @@
         divCartasJugadores[turno].append(imgCarta);
     }
 
-    //NOTE turno de la cpu
-    const turnoCpu = (puntosMinimos) => {
-        let puntosComputadora = 0;
-        do {
-            const carta = pedirCarta();
-            puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
-            crearCarta(carta, puntosJugadores.length - 1);
-            if (puntosMinimos > 21)
-                break;
-        } while ((puntosCpu < puntosMinimos) && (puntosMinimos <= 21));
-
+    const determinarGanador = () => {
+        const [puntosMinimos, puntosCpu] = puntosJugadores;
         setTimeout(() => {
             if (puntosCpu === puntosMinimos) {
                 alert('empate :(');
@@ -93,6 +89,19 @@
                 alert('cpu gana :D');
             }
         }, 10);
+    }
+
+    //NOTE turno de la cpu
+    const turnoCpu = (puntosMinimos) => {
+        let puntosComputadora = 0;
+        do {
+            const carta = pedirCarta();
+            puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
+            crearCarta(carta, puntosJugadores.length - 1);
+            if (puntosMinimos > 21)
+                break;
+        } while ((puntosCpu < puntosMinimos) && (puntosMinimos <= 21));
+        determinarGanador();
     }
 
     //NOTE eventos
@@ -126,15 +135,9 @@
     // }, false);
     btnNuevo.addEventListener('click', () => {
         inicializarJuego();
-        // deck = [];
-        // deck = crearDeck();
-        // puntosJugador = 0;
-        // puntosCpu = 0;
-        // puntosHTML[0].innerText = puntosJugador;
-        // puntosHTML[1].innerText = puntosCpu;
-        // divCartasJugador.innerHTML = '';
-        // divCartasCpu.innerHTML = '';
-        // btnPedir.disabled = false;
-        // btnDetener.disabled = false;
     });
-})()
+
+    return {
+        nuevoJuego: inicializarJuego
+    };
+})();
