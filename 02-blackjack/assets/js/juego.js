@@ -100,7 +100,7 @@ const miModulo = (() => {
             crearCarta(carta, puntosJugadores.length - 1);
             if (puntosMinimos > 21)
                 break;
-        } while ((puntosCpu < puntosMinimos) && (puntosMinimos <= 21));
+        } while ((puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
         determinarGanador();
     }
 
@@ -127,7 +127,7 @@ const miModulo = (() => {
     btnDetener.addEventListener('click', () => {
         btnPedir.disabled = true;
         btnDetener.disabled = true;
-        turnoCpu(puntosJugador);
+        turnoCpu(puntosJugadores[0]);
     });
 
     // btnNuevo.addEventListener('click', () => {
