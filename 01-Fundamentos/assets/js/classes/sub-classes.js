@@ -25,12 +25,29 @@ class Persona {
     get getComidaFavorita() {
         return `la comida favorita de ${this.nombre} es ${this.comida}`;
     }
+
+
+    quienSoy() {
+        console.log(`soy ${this.nombre} y mi identidad es ${this.codigo}`);
+    }
+    miFrase() {
+        this.quienSoy();
+        console.log(`${this.codigo} dice: ${this.frase}`);
+    }
 }
-const spiderman = new Persona('Peter Parker', 'SPIDER', 'soy tu vecino');
-const iroman = new Persona('Tony stark', 'iroman', 'soy tu vecino');
-spiderman.setComidaFavorita = 'pizza';
+class Heroe extends Persona {
+    clan = 'sin clan';
+    constructor(nombre, codigo, frase) {
+        super(nombre, codigo, frase);//primero se ejecuta el constructor de la clase padre
+        history.clan = 'Los avengers';
+    }
+
+    quienSoy() {
+        console.log(`soy ${this.nombre}, ${this.clan}`);
+        super.quienSoy();
+    }
+}
+const spiderman = new Heroe('Peter Parker', 'SPIDER', 'soy tu vecino');
+// const spiderman = new Heroe();
 console.log({ spiderman });
-//Persona._conteo = 2;
-console.log('conteo estatico', Persona._conteo);
-console.log('conteo estatico', Persona.conteo);
-Persona.mensaje();
+spiderman.quienSoy();
