@@ -1,5 +1,6 @@
 const HtmlWebpack = require('html-webpack-plugin');
 const MiniCssExtract = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     mode: 'development',
@@ -38,6 +39,11 @@ module.exports = {
             //[name] toma el mismo nombre del archivo original
             filename: '[name].css',
             ignoreOrder: false
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/assets", to: "assets/" },
+            ]
+        }),
     ]
 }
