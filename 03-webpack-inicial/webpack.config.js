@@ -14,6 +14,9 @@ module.exports = {
                 options: {
                     sources: false
                 }
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
