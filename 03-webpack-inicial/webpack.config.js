@@ -1,5 +1,5 @@
 const HtmlWebpack = require('html-webpack-plugin');
-const { Template } = require('webpack');
+const MiniCssExtract = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: 'development',
@@ -7,18 +7,23 @@ module.exports = {
         clean: true
     },
     module: {
-        rules: [
-            {
-                test: /\.html$/,
-                loader: 'html-loader',
-                options: {
-                    sources: false
-                }
-            }, {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+        rules: [{
+            test: /\.html$/,
+            loader: 'html-loader',
+            options: {
+                sources: false
             }
-        ]
+        }, {
+            test: /\.css$/,
+            exclude: /styles.css$/,
+            use: ['style-loader', 'css-loader']
+        }, {
+            test: /styles.css$/,
+            use: [MiniCssExtract.loader, 'css-loader']
+        }, {
+            test: /\.(png|jpe?g|gif)$/,
+            loader: 'file-loader',
+        }]
     },
     optimization: {},
     plugins: [
@@ -28,6 +33,11 @@ module.exports = {
             // filename: 'index.html',
             //cual es el archivo que se va a usar como plantilla
             template: './src/index.html'
+        }),
+        new MiniCssExtract({
+            //[name] toma el mismo nombre del archivo original
+            filename: '[name].css',
+            ignoreOrder: false
         })
     ]
 }
