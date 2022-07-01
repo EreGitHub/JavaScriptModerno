@@ -12,3 +12,16 @@ export const obtenerHeroesArr = async () => {
 
 export const obtenerHeroesArr1 = async () =>
     await Promise.all(heroesIds.map(buscarHeroeAsync));
+
+export const obtenerHeroeAwait = async (id) => {
+    try {
+        const heroe = await buscarHeroeAsync(id);
+        return heroe;
+    } catch (error) {
+        console.warn(error);
+        return {
+            nombre: 'sin nombre',
+            poder: 'sin poder'
+        }
+    }
+}
