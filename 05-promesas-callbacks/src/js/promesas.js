@@ -19,7 +19,7 @@ export const buscarHeroe = (id) => {
         if (heroe)
             //lo que queremos regresar a la funcion
             //que esta llamando a esta promesa
-            resolve(heroe);
+            setTimeout(() => resolve(heroe), 1000);
         else
             reject(`no existe un heros con el id ${id}`);
     });
