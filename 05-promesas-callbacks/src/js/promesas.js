@@ -1,3 +1,4 @@
+//promesas.js
 const heroes = {
     capi: {
         nombre: 'Capitan America',
@@ -22,6 +23,15 @@ export const buscarHeroe = (id) => {
         else
             reject(`no existe un heros con el id ${id}`);
     });
+}
+
+export const buscarHeroeAsync = async (id) => {
+    const heroe = heroes[id];
+    if (heroe)
+        return heroe;
+    else
+        throw `no existe un heros con el id ${id}`;
+    //throw Error(`no existe un heros con el id ${id}`);
 }
 
 const promesaLenta = new Promise((resolve, reject) => {
