@@ -1,4 +1,7 @@
 //indesx.js principal
-import { init } from "./js/chistes-page";
+import { obtenerUsuario } from './js/http-provider'
 
-init();
+obtenerUsuario().then(console.log);
+
+//import { init } from "./js/chistes-page";
+//init();

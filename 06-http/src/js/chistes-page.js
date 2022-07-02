@@ -8,9 +8,7 @@ const crearChistesHtml = () => {
     <h1 class="mt-5">Chiste</h1>
     <hr>
     <button class="btn btn-primary">Otro chiste</button>
-
-    <ol class="mt-2 list-group">    
-    </ol>`
+    <ol class="mt-2 list-group"></ol>`
     const divChistes = document.createElement('div');
     divChistes.innerHTML = html;
     body.appendChild(divChistes);
