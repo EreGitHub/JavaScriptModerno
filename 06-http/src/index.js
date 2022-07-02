@@ -10,3 +10,4 @@ CRUD.actualizarUsuario(1, {
     name: 'Juan123',
     job: 'Desarrollador123'
 }).then(console.log);
+CRUD.borrarUsuario(1).then(console.log);
