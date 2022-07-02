@@ -1,4 +1,4 @@
-const jokeUrl = 'https://api.chucknorris.io/jokes/random';
-fetch(jokeUrl)
-    .then(resp => resp.json())
-    .then(console.log);
+//indesx.js principal
+import { obtenerChiste } from "./js/http-provider";
+
+obtenerChiste().then(console.log);
